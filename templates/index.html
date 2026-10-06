@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Petition Portal | Student Delegatory Parliament, Veritas University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .hero {
+      background:
+        linear-gradient(rgba(10,20,40,.72), rgba(10,20,40,.72)),
+        url('{{ url_for('static', filename='hero-bg.jpg') }}') center center / cover no-repeat !important;
+    }
+    .header {
+      background:
+        linear-gradient(rgba(255,255,255,.93), rgba(255,255,255,.93)),
+        url('{{ url_for('static', filename='header-bg.jpg') }}') center center / cover no-repeat !important;
+      background-color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+
+      <!-- LEFT: both logos together + brand text -->
+      <div class="brand">
+        <div class="brand-logos">
+          <div class="logo-slot logo-slot--vu" title="Veritas University">
+            <img src="{{ url_for('static', filename='logo-vu.png') }}" alt="Veritas University" class="logo-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="logo-fallback">
+              <span class="lf-abbr">VU</span>
+            </div>
+          </div>
+          <div class="logo-slot logo-slot--sdp" title="Student Delegatory Parliament">
+            <img src="{{ url_for('static', filename='logo-sdp.png') }}" alt="SDP" class="logo-img"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="logo-fallback">
+              <span class="lf-abbr">SDP</span>
+            </div>
+          </div>
+        </div>
+        <div class="brand-divider"></div>
+        <div class="brand-text">
+          <span class="brand-name">Student Delegatory Parliament</span>
+          <span class="brand-sub">Veritas University, Abuja</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: theme toggle only -->
+      <div class="header-right">
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+          <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+      </div>
+
+    </div>
+    <div class="header-rule"></div>
+  </header>
+
+  <div class="hero">
+    <div class="hero-bg-img" aria-hidden="true"></div>
+    <div class="hero-grid-lines" aria-hidden="true"></div>
+    <div class="hero-scanlines" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <p class="hero-eyebrow">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+          <!-- orb at top -->
+          <circle cx="12" cy="4" r="2.5" fill="#93c5fd"/>
+          <!-- cross guard -->
+          <line x1="7" y1="8" x2="17" y2="8" stroke="#93c5fd" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- shaft -->
+          <line x1="12" y1="8" x2="12" y2="19" stroke="#93c5fd" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- mid guard -->
+          <line x1="9.5" y1="13" x2="14.5" y2="13" stroke="#93c5fd" stroke-width="1.4" stroke-linecap="round"/>
+          <!-- pointed ferrule -->
+          <path d="M10.5 19 L12 23 L13.5 19 Z" fill="#93c5fd"/>
+        </svg>
+        Petition Portal | Student Delegatory Parliament
+      </p>
+      <h1 class="hero-h1">Draft a <span class="accent" id="typewriter"></span></h1>
+      <p class="hero-motto">Faith in Action &nbsp;&bull;&nbsp; Service in Unity</p>
+      <p class="hero-desc">Complete the form below. Your document will be formally addressed to the <strong>Student Affairs Unit, Veritas University</strong>, routed through the Student Delegatory Parliament.</p>
+      <div class="hero-tags">
+        <span class="hero-tag hero-tag--red">Legislative Arm</span>
+        <span class="hero-tag">Veritas University</span>
+        <span class="hero-tag">Bwari Area Council, F.C.T.</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="main">
+    <div class="layout">
+
+      <form id="petition-form" class="form-card" novalidate>
+
+        <div class="steps-bar">
+          <div class="step-item active" data-step="1">
+            <div class="step-num">1</div>
+            <span>Petition Content</span>
+          </div>
+          <div class="step-track"></div>
+          <div class="step-item" data-step="2">
+            <div class="step-num">2</div>
+            <span>Your Details</span>
+          </div>
+          <div class="step-track"></div>
+          <div class="step-item" data-step="3">
+            <div class="step-num">3</div>
+            <span>Review &amp; Save</span>
+          </div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="form-step active" data-step="1">
+          <div class="field">
+            <label for="title">Petition Title <span class="req">*</span></label>
+            <div class="input-row">
+              <input id="title" name="title" type="text" placeholder="e.g. Petition for Improved Hostel Facilities" required>
+              <button id="suggest-btn" class="btn-suggest" type="button">Suggest</button>
+            </div>
+            <div id="suggestions" class="chips-row"></div>
+          </div>
+          <div class="field">
+            <label for="background">Background <span class="req">*</span></label>
+            <textarea id="background" name="background" rows="4" placeholder="Provide context: what is the situation, who is affected, and why it matters." required></textarea>
+            <p class="hint">Be factual and concise. A reader should understand the issue in under a minute.</p>
+          </div>
+          <div class="field">
+            <label for="grievance">Statement of Grievance <span class="req">*</span></label>
+            <textarea id="grievance" name="grievance" rows="4" placeholder="State clearly what the problem or injustice is." required></textarea>
+          </div>
+          <div class="field">
+            <label for="request">Prayer / Request <span class="req">*</span></label>
+            <textarea id="request" name="request" rows="4" placeholder="We, the undersigned, respectfully request that the Student Affairs Unit..." required></textarea>
+          </div>
+          <div class="field">
+            <label for="evidence">Supporting Evidence <span class="opt">(optional)</span></label>
+            <textarea id="evidence" name="evidence" rows="3" placeholder="Add references, dates, figures, or any supporting context."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="form-step" data-step="2">
+          <div class="two-col">
+            <div class="field">
+              <label for="petitioner">Full Name <span class="req">*</span></label>
+              <input id="petitioner" name="petitioner" type="text" placeholder="As on your student record" required>
+            </div>
+            <div class="field">
+              <label for="student_id">Student ID <span class="req">*</span></label>
+              <input id="student_id" name="student_id" type="text" placeholder="e.g. VU/2024/001" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="faculty">Faculty / Department <span class="req">*</span></label>
+            <input id="faculty" name="faculty" type="text" placeholder="e.g. Faculty of Social Sciences" required>
+          </div>
+          <div class="two-col">
+            <div class="field">
+              <label for="email">Email Address <span class="req">*</span></label>
+              <input id="email" name="email" type="email" placeholder="you@veritas.edu.ng" required>
+            </div>
+            <div class="field">
+              <label for="level">Level / Year</label>
+              <input id="level" name="level" type="text" placeholder="e.g. 300 Level">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-step" data-step="3">
+          <p class="review-intro">Review your petition before saving. The PDF will be addressed to the Student Affairs Unit through the Student Delegatory Parliament.</p>
+          <div id="review-box" class="review-box"></div>
+          <label class="declaration">
+            <input type="checkbox" id="declaration" required>
+            <span>I confirm that the information provided is accurate and that this petition is submitted in good faith through the Student Delegatory Parliament, Veritas University.</span>
+          </label>
+        </div>
+
+        <div class="form-nav">
+          <button id="back-btn" class="btn-back" type="button" disabled>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+            Back
+          </button>
+          <button id="next-btn" class="btn-primary" type="button">
+            Continue
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button id="save-btn" class="btn-red" type="submit" hidden>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Save &amp; Generate PDF
+          </button>
+        </div>
+        <p id="status" class="status-msg" role="status"></p>
+      </form>
+
+      <aside class="sidebar">
+        <div class="info-card">
+          <div class="info-title">How it works</div>
+          <ol class="info-list">
+            <li>Fill in your petition content: background, grievance, and request.</li>
+            <li>Enter your student details on the next step.</li>
+            <li>Review, then save to generate the formal PDF document.</li>
+            <li>Print, sign, and submit to the Parliament Secretariat for forwarding to Student Affairs.</li>
+          </ol>
+        </div>
+        <div class="info-card">
+          <div class="info-title">Tips for a strong petition</div>
+          <ul class="info-list plain">
+            <li>State facts, not emotions</li>
+            <li>Be specific about what you want done</li>
+            <li>Include dates, figures, or evidence where possible</li>
+            <li>Write in formal, respectful language</li>
+          </ul>
+        </div>
+        <div class="download-card" id="download-card" hidden>
+          <div class="download-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Your petition is ready
+          </div>
+          <p class="download-desc">Download the PDF, print and sign it, then submit to the Parliament Secretariat.</p>
+          <a id="download-link" href="#" class="btn-download">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Petition PDF
+          </a>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-inner">
+
+        <!-- Col 1: Identity -->
+        <div class="footer-col footer-col--identity">
+          <div class="footer-logos">
+            <div class="footer-logo-slot footer-logo-slot--vu" title="Veritas University">
+              <img src="{{ url_for('static', filename='logo-vu.png') }}" alt="Veritas University" class="footer-logo-img">
+            </div>
+            <div class="footer-logo-slot footer-logo-slot--sdp" title="Student Delegatory Parliament">
+              <img src="{{ url_for('static', filename='logo-sdp.png') }}" alt="SDP" class="footer-logo-img">
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 2: Address & Contact -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Secretariat</h4>
+          <address class="footer-address">
+            Office of the Senate President<br>
+            Student Delegatory Parliament<br>
+            Veritas University<br>
+            Bwari Area Council, F.C.T.<br>
+            Abuja, Federal Republic of Nigeria
+          </address>
+        </div>
+
+        <!-- Col 3: Quick links -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Portal</h4>
+          <ul class="footer-links">
+            <li><a href="/">New Petition</a></li>
+            <li><a href="#">Student Affairs Unit</a></li>
+            <li><a href="#">Parliament Constitution</a></li>
+            <li><a href="#">Petition Guidelines</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Notice -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Notice</h4>
+          <p class="footer-notice">This portal is an official channel of the Student Delegatory Parliament. All submissions are treated with strict confidentiality and forwarded through proper parliamentary procedure.</p>
+          <p class="footer-notice">Misuse of this portal is subject to disciplinary action under the University&rsquo;s Student Code of Conduct.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>&copy; <span id="fyear"></span> Student Delegatory Parliament, Veritas University. All rights reserved.</span>
+        <span>Petition Portal | Legislative Arm</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie / Privacy Popup -->
+  <div id="cookie-overlay" class="cookie-overlay" role="dialog" aria-modal="true" aria-labelledby="cookie-title" hidden>
+    <div class="cookie-box">
+      <div class="cookie-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span id="cookie-title">Privacy &amp; Cookies</span>
+      </div>
+      <div class="cookie-body">
+        <p>This portal uses a single session cookie to keep your form progress and theme preference. No personal data is shared with third parties.</p>
+        <p>By continuing you agree to our use of cookies and acknowledge our <button type="button" class="cookie-link" id="privacy-link">Privacy Policy</button>.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="cookie-decline" class="cookie-btn cookie-btn--secondary">Decline</button>
+        <button type="button" id="cookie-accept" class="cookie-btn cookie-btn--primary">Accept &amp; Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-overlay" class="cookie-overlay" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+    <div class="cookie-box cookie-box--wide">
+      <div class="cookie-header">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span id="privacy-title">Privacy Policy</span>
+        <button type="button" id="privacy-close" class="cookie-close" aria-label="Close">&times;</button>
+      </div>
+      <div class="cookie-body cookie-body--scroll">
+        <h3>Student Delegatory Parliament, Veritas University</h3>
+        <p class="privacy-date">Effective: <span id="privacy-year"></span></p>
+
+        <h4>1. What we collect</h4>
+        <p>When you submit a petition we collect your name, student ID, faculty, email address, level, and the petition content you provide. This information is stored locally on the server running this portal.</p>
+
+        <h4>2. How we use it</h4>
+        <p>Your data is used solely to generate the formal petition PDF and to route your petition through the Student Delegatory Parliament to the Student Affairs Unit, Veritas University. It is not used for marketing or profiling.</p>
+
+        <h4>3. Cookies</h4>
+        <p>We use one functional cookie to remember your theme preference (light or dark mode). No tracking or analytics cookies are used.</p>
+
+        <h4>4. Data sharing</h4>
+        <p>Your petition details are shared only with the Student Affairs Unit, Veritas University, as part of the formal parliamentary procedure. No data is sold or shared with external third parties.</p>
+
+        <h4>5. Data retention</h4>
+        <p>Petition records are retained for the duration of the academic year in which they are submitted and may be archived thereafter in accordance with university record-keeping policy.</p>
+
+        <h4>6. Your rights</h4>
+        <p>You may request access to, correction of, or deletion of your petition record by contacting the Parliament Secretariat at the address listed in the footer.</p>
+
+        <h4>7. Contact</h4>
+        <p>Office of the Senate President, Student Delegatory Parliament, Veritas University, Bwari Area Council, F.C.T., Abuja.</p>
+      </div>
+      <div class="cookie-actions">
+        <button type="button" id="privacy-back" class="cookie-btn cookie-btn--primary">Back to Cookies</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
